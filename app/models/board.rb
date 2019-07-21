@@ -1,4 +1,8 @@
 class Board < ApplicationRecord
+  has_many :games
+
+  validates :characters, presence: true
+
 end
 
 # == Schema Information
