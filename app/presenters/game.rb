@@ -11,7 +11,7 @@ module Presenters
         id: game.id,
         token: game.token,
         duration: game.duration,
-        board: game.board.characters
+        board: game.board.characters,
       }
 
       if additional_fields

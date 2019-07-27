@@ -13,7 +13,7 @@ class Game < ApplicationRecord
 
     return 0 if duration < time_elapsed
 
-    (duration - time_elapsed).to_f(2)
+    (duration - time_elapsed).to_i
   end
 
 end

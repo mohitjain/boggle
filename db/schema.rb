@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_07_21_155933) do
+ActiveRecord::Schema.define(version: 2019_07_27_204630) do
 
   create_table "boards", force: :cascade do |t|
     t.string "characters", null: false
@@ -21,11 +21,11 @@ ActiveRecord::Schema.define(version: 2019_07_21_155933) do
   create_table "game_histories", force: :cascade do |t|
     t.integer "game_id", null: false
     t.string "word", null: false
-    t.boolean "valid", default: false, null: false
+    t.boolean "accepted", default: false, null: false
     t.integer "points", default: 0, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["game_id"], name: "index_game_histories_on_game_id"
+    t.index ["game_id", "word"], name: "index_game_histories_on_game_id_and_word", unique: true
   end
 
   create_table "games", force: :cascade do |t|
