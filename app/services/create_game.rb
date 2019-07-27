@@ -2,7 +2,7 @@ class CreateGame
 
   def initialize(duration: , input_board: , random: )
     self.duration = duration
-    self.input_board = input_board
+    self.input_board = input_board.blank? ? DEFAULT_BOARD : input_board
     self.random = random.nil? ? true : random
   end
 
