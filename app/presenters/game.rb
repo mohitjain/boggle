@@ -1,15 +1,30 @@
-require_relative "base"
 module Presenters
-  class Game < Base
+  class Game
+
+    def initialize(game: , additional_fields: false)
+      self.game = game
+      self.additional_fields = additional_fields
+    end
 
     def to_json
-      {
-        id: object.id,
-        token: object.token,
-        duration: object.duration,
-        board: object.board.characters
+      data = {
+        id: game.id,
+        token: game.token,
+        duration: game.duration,
+        board: game.board.characters
       }
+
+      if additional_fields
+        data[:time_left] = game.time_left
+        data[:points] = game.points
+      end
+
+      data
     end
+
+    private
+
+    attr_accessor :game, :additional_fields
 
   end
 end

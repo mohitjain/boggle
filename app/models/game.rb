@@ -8,6 +8,14 @@ class Game < ApplicationRecord
     only_integer: true, greater_than_or_equal_to: 0
   }
 
+  def time_left
+    time_elapsed = (Time.now - created_at)
+
+    return 0 if duration < time_elapsed
+
+    (duration - time_elapsed).to_f(2)
+  end
+
 end
 
 # == Schema Information
