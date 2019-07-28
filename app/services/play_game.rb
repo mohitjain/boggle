@@ -53,7 +53,6 @@ class PlayGame
   end
 
   def word_exists_in_dictionary?
-    return true
     $dictionary.valid?(word)
   end
 
