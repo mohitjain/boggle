@@ -4,7 +4,16 @@ require_relative "../presenters/error"
 require_relative "../services/create_game"
 require_relative "../services/play_game"
 
+require_relative "../schema_validators/game/create"
+require_relative "../schema_validators/game/update"
+
 class GamesController < ApplicationController
+
+  before_action :validate_schema, only: [
+    :create,
+    :update,
+  ]
+
   before_action :validate_game_presence, only: [
     :show,
     :update,
@@ -57,6 +66,15 @@ class GamesController < ApplicationController
   end
 
   private
+
+  def validate_schema
+    schema_validator_klass = "SchemaValidators::Game::#{params[:action].camelcase}".constantize
+    unless schema_validator_klass.new(input: params.permit!.to_hash).valid?
+      render json: Presenters::Error.new(
+        message: "Invalid input",
+      ).to_json, status: :bad_request
+    end
+  end
 
   def game
     @game
