@@ -13,7 +13,7 @@ class Game < ApplicationRecord
   end
 
   def time_left
-    time_elapsed = (Time.now - created_at)
+    time_elapsed = (Time.now - Game.first.created_at)
 
     return 0 if duration < time_elapsed
 
@@ -30,7 +30,7 @@ end
 #
 # Table name: games
 #
-#  id         :integer          not null, primary key
+#  id         :bigint           not null, primary key
 #  duration   :integer          not null
 #  points     :integer          default(0), not null
 #  token      :string           not null, indexed

@@ -15,7 +15,7 @@ end
 #
 # Table name: game_histories
 #
-#  id         :integer          not null, primary key
+#  id         :bigint           not null, primary key
 #  accepted   :boolean          default(FALSE), not null
 #  points     :integer          default(0), not null
 #  word       :string           not null, indexed => [game_id]

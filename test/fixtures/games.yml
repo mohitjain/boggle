@@ -2,7 +2,7 @@
 #
 # Table name: games
 #
-#  id         :integer          not null, primary key
+#  id         :bigint           not null, primary key
 #  duration   :integer          not null
 #  points     :integer          default(0), not null
 #  token      :string           not null, indexed
