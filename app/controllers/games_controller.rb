@@ -43,5 +43,5 @@ class GamesController < ApplicationController
       additional_fields: true,
     ).to_json, status: status
   end
-  
+
 end

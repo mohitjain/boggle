@@ -8,6 +8,19 @@ class Board < ApplicationRecord
     is: (BOARD_SIZE * 2 - 1)
   }
 
+  def display
+    [
+      characters[0..6].split(","),
+      characters[8..14].split(","),
+      characters[16..22].split(","),
+      characters[24..31].split(",")
+    ]
+  end
+
+  def api_characters
+    characters.split(",").join(", ")
+  end
+
   def self.build_with_random_characters
     board = new
     board.characters = generate_random_characters.join(",")

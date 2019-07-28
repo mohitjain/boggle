@@ -1,3 +1,4 @@
+require_relative "board_search"
 class PlayGame
 
   def initialize(game: , word: )
@@ -25,7 +26,7 @@ class PlayGame
 
   def save_history
     return nil if game_history.present?
-    
+
     game_history = game.game_histories.build
     game_history.accepted = valid_word?
     game_history.word = word
@@ -38,9 +39,9 @@ class PlayGame
   def valid_word?
     return @valid_word unless @valid_word.nil?
 
-    @valid_word = word_not_already_choosen? &&
-                      word_exists_in_dictionary? &&
-                      word_present_on_the_board?
+    @valid_word = word_exists_in_dictionary? &&
+                    word_not_already_choosen? &&
+                    word_present_on_the_board?
   end
 
   def word_not_already_choosen?
@@ -52,12 +53,14 @@ class PlayGame
   end
 
   def word_exists_in_dictionary?
+    return true
     $dictionary.valid?(word)
   end
 
-  #ToDo: Lets write this logic later.
   def word_present_on_the_board?
-    [true, false].sample
+    BoardSearch.new(
+      board: game.board.display, word: word
+    ).execute
   end
 
   def calculate_points(word)
